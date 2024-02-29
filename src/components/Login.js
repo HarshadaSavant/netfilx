@@ -7,6 +7,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUserAction } from "../utils/userSlice";
+import { BackgroundImg,USER_AVTAR } from "../utils/Constant";
 
 const Login = () => {
   const [signInForm, setSignInForm] = useState(true);
@@ -30,7 +31,8 @@ const Login = () => {
             // Signed up 
             const user = userCredential.user;
             updateProfile(user, {
-              displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/12824231?v=4"
+              displayName: name.current.value, 
+              photoURL: USER_AVTAR
             }).then(() => {
               const {uid,email,displayName,photoURL} = auth.currentUser;
               dispatch(addUserAction({uid:uid,email:email,displayName:displayName,photoURL:photoURL}));
@@ -71,8 +73,8 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          alt="Backgroundimg"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/5e16108c-fd30-46de-9bb8-0b4e1bbbc509/29d8d7d7-83cc-4b5f-aa9b-6fd4f68bfaa6/IN-en-20240205-popsignuptwoweeks-perspective_alpha_website_small.jpg"
+          alt="BackgroundImg"
+          src={BackgroundImg}
         ></img>
       </div>
       <Form onSubmit={(e)=>e.preventDefault()} className="absolute w-3/12 p-12 my-36 mx-auto right-0 left-0 bg-black text-white bg-opacity-80 ">
